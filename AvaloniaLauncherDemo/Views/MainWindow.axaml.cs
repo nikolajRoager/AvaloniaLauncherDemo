@@ -15,7 +15,6 @@ public partial class MainWindow : Window
         
         WeakReferenceMessenger.Default.Register<CloseWindowMessage>(this, (r, m) =>
         {
-            Debug.WriteLine("CLOSE CALL");
             this.Close();
         });
     }

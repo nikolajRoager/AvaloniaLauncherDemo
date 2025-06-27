@@ -23,16 +23,20 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="42" Text="Insert Title"></TextBlock>
-        <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="Black" CornerRadius="5" Background="DarkKhaki">
-                <StackPanel HorizontalAlignment="Center">
+                <StackPanel HorizontalAlignment="Center"  Margin="10">
+                    <TextBlock FontSize="24" HorizontalAlignment="Center">Scaling</TextBlock>
+                    <Panel Height="5"/>
+                    <TextBlock TextWrapping="Wrap">If the Text and UI is too small, you can change the system Scale (Settings > System > Display > Scale on Windows, between 100% and 150% is recommended)</TextBlock>
+                    <Panel Height="5"/>
                     <TextBlock FontSize="20" HorizontalAlignment="Center">Description</TextBlock>
-                    <Panel Height="20"/>
-                        <TextBlock TextWrapping="Wrap">TEXT TEXT TEXT TEXT TEXT TEXT</TextBlock>
+                    <Panel Height="5"/>
+                    <TextBlock TextWrapping="Wrap">TEXT TEXT TEXT TEXT TEXT TEXT</TextBlock>
                 </StackPanel>
             </Border>
         </Grid>

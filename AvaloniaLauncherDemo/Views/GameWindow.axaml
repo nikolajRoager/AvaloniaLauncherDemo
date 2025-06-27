@@ -3,29 +3,44 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:AvaloniaLauncherDemo.ViewModels"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="AvaloniaLauncherDemo.Views.GameWindow"
         x:DataType="vm:GameWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
         Title="Game Window"
         Background="DarkOliveGreen">
         <Grid>
-                <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="200"/>
-                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="300"/>
+                </Grid.ColumnDefinitions>
                 <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="400"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="{Binding MapBitmap }"></Image>
-                        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="DarkKhaki" CornerRadius="4">
-                                <TextBlock>Info bar</TextBlock>
+                        <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="200"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0">Left click: select city, Right click: move/attack</TextBlock>
+                        <Image Grid.Row="1" Source="{Binding MapBitmap }" PointerPressed="OnMapPointerPressed"/>
+                        <Border Grid.Row="2" BorderBrush="Black" BorderThickness="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="OliveDrab" CornerRadius="4">
+                                <TextBlock>Action bar</TextBlock>
                         </Border>
-                        
                 </Grid>
-                <Border Grid.Row="1" BorderBrush="Black" BorderThickness="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="OliveDrab" CornerRadius="4">
-                        <TextBlock>Action bar</TextBlock>
+                <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="DarkKhaki" CornerRadius="4">
+                        <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">city: </TextBlock>
+                                <ComboBox Grid.Row="0"  Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding CityNames}" SelectedValue="{Binding SelectedCity}"></ComboBox>
+                                <TextBlock Grid.Row="1"  Grid.Column="0" VerticalAlignment="Center">Brigades: </TextBlock>
+                                <TextBlock Grid.Row="1"  Grid.Column="1" VerticalAlignment="Center" Text="{Binding SelectedBrigades}"></TextBlock>
+                        </Grid>
                 </Border>
         </Grid>   
 </Window>

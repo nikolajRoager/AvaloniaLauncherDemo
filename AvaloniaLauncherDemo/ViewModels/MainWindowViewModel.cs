@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Avalonia.Media.Imaging;
 using AvaloniaLauncherDemo.Messages;
-using AvaloniaLauncherDemo.Models;
 using AvaloniaLauncherDemo.Views;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -18,7 +17,7 @@ public partial class MainWindowViewModel : ViewModelBase
     /// Start the game with current settings selected
     /// </summary>
     [RelayCommand]
-    private async Task PlayGame()
+    private void PlayGame()
     {
         
         var newViewModel = new GameWindowViewModel();
