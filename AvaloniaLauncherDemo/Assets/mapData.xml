@@ -1,4 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mapData>
-    
+    <Nations>
+        <Danmark Red="255" Green="0" Blue="0"/>
+        <Sverige Red="0" Green="0" Blue="255"/>
+        <Tyskland Red="80" Green="80" Blue="80"/>
+    </Nations>
+    <Cities>
+        <Aalborg x="140" y="100" controller="Danmark">
+            <Aarhus/>
+        </Aalborg>
+        <Aarhus x="200" y="200" controller="Danmark">
+            <Aalborg/>
+            <Fredericia/>
+        </Aarhus>
+        <København x="600" y="300" controller="Sverige">
+            <Odense/>
+        </København>
+        <Odense x="400" y="400" controller="Sverige">
+            <Fredericia/>
+            <København/>
+        </Odense>
+        <Esbjerg x="100" y="450" controller="Tyskland">
+            <Fredericia/>
+            <Aarhus/>
+        </Esbjerg>
+        <Fredericia x="200" y="400" controller="Tyskland">
+            <Odense/>    
+            <Aarhus/>
+            <Esbjerg/>
+        </Fredericia>
+    </Cities>
 </mapData>

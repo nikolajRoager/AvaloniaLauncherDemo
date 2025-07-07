@@ -11,7 +11,7 @@ namespace AvaloniaLauncherDemo.ViewModels;
 
 public partial class GameWindowViewModel : ViewModelBase
 {
-    private Map _map=new();
+    private Game.Game _game;
     /// <summary>
     /// WARNING, this encodes the SKIASHARP bitmap as PNG, which is slow (as in several milliseconds)
     /// This should only be called when stuff actually has change
@@ -21,21 +21,25 @@ public partial class GameWindowViewModel : ViewModelBase
         get
         {
             Console.WriteLine("CALL PNG CONVERTER");
-            var pngStream = _map.AsPngImage(SelectedCity); 
+            var pngStream = _game.AsPngImage(SelectedCity); 
             return new Bitmap(pngStream);
         }
     }
+
+    public string PlayerTurn => _game.ActivePlayer;
     
     /// <summary>
     /// Number of brigades in the selected city
     /// </summary>
-    public int SelectedBrigades => _map.Brigades(SelectedCity);
+    public int SelectedBrigades => _game.Brigades(SelectedCity);
     
     private string _selectedCity = "Aarhus";
 
     public GameWindowViewModel()
     {
         Stream mapStream = AssetLoader.Open(new Uri("avares://AvaloniaLauncherDemo/Assets/mapData.xml"));
+        
+        _game=new Game.Game(mapStream);
     }
 
     public string SelectedCity
@@ -51,18 +55,28 @@ public partial class GameWindowViewModel : ViewModelBase
     }
 
 
-    public List<string> CityNames => _map.CityNames;
+    public List<string> CityNames => _game.CityNames;
     
 
     [RelayCommand]
     private void ImageClicked(Point imagePoint)
     {
-        Console.WriteLine($"Clicked image, received in VM at {imagePoint.X},{imagePoint.Y}");
-        SelectedCity = _map.SelectCity(imagePoint.X, imagePoint.Y);
-        Console.WriteLine($"Selected {SelectedCity}");
+        SelectedCity = _game.SelectCity(imagePoint.X, imagePoint.Y);
         //The selection has now changed ... maybe
         OnPropertyChanged(nameof(SelectedCity));
         OnPropertyChanged(nameof(MapBitmap));
         OnPropertyChanged(nameof(SelectedBrigades));
+    }
+
+    [RelayCommand]
+    private void NextTurn()
+    {
+        Console.WriteLine("--Turn--");
+        _game.NextTurn();
+        SelectedCity = "None";
+        OnPropertyChanged(nameof(SelectedCity));
+        OnPropertyChanged(nameof(MapBitmap));
+        OnPropertyChanged(nameof(SelectedBrigades));
+        OnPropertyChanged(nameof(PlayerTurn));
     }
 }

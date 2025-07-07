@@ -14,8 +14,9 @@ public class City
     public int Brigades { get; set; }
         
     public List<City> Neighbors { get; set; }
-    public City(float x, float y, string controller,int brigades=5)
+    public City(string name, float x, float y, string controller,int brigades=5)
     {
+        this.Name = name;
         this.x = x;
         this.y = y;
         this.Controller = controller;

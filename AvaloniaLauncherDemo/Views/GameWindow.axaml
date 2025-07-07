@@ -27,6 +27,8 @@
                         </Border>
                 </Grid>
                 <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="DarkKhaki" CornerRadius="4">
+                        <Panel>
+                        <StackPanel Grid.Column="1" Orientation="Vertical">
                         <Grid Margin="10">
                                 <Grid.RowDefinitions>
                                         <RowDefinition Height="30"/>
@@ -36,11 +38,34 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">city: </TextBlock>
-                                <ComboBox Grid.Row="0"  Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding CityNames}" SelectedValue="{Binding SelectedCity}"></ComboBox>
-                                <TextBlock Grid.Row="1"  Grid.Column="0" VerticalAlignment="Center">Brigades: </TextBlock>
-                                <TextBlock Grid.Row="1"  Grid.Column="1" VerticalAlignment="Center" Text="{Binding SelectedBrigades}"></TextBlock>
+                                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Center" FontSize="20">Nation</TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">Player nation: </TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Text="{Binding PlayerTurn}"></TextBlock>
                         </Grid>
+                        <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="30"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Center" FontSize="20">City</TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">city: </TextBlock>
+                                <ComboBox Grid.Row="1"  Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding CityNames}" SelectedValue="{Binding SelectedCity}"></ComboBox>
+                                <TextBlock Grid.Row="2"  Grid.Column="0" VerticalAlignment="Center">Brigades: </TextBlock>
+                                <TextBlock Grid.Row="2"  Grid.Column="1" VerticalAlignment="Center" Text="{Binding SelectedBrigades}"></TextBlock>
+                                <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center">Attack/Move to</TextBlock>
+                        </Grid>
+                        </StackPanel>
+                        <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="Red" Content="End Turn" Command="{Binding NextTurnCommand}"/>
+                        </Panel>
                 </Border>
         </Grid>   
 </Window>

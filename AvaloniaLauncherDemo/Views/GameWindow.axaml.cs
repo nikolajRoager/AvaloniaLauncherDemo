@@ -26,7 +26,17 @@ public partial class GameWindow : Window
         //We will also need to talk to the pixels of the bitmap to scale this correctly
         if (image?.Source is Bitmap bitmap)
         {
-            var point = e.GetPosition(image);
+            var position = e.GetPosition(image);
+            
+            var point = e.GetCurrentPoint(image);
+            if (point.Properties.IsLeftButtonPressed)
+            {
+                Console.WriteLine("LEFT, SELECTPRESS");
+            }
+            else if (point.Properties.IsRightButtonPressed)
+            {
+                Console.WriteLine("RIGHT, MOVEPRESS");
+            }
             
             //To rescale the point, get the widths before and after scaling
             double renderedWidth = image.Bounds.Width;
@@ -37,8 +47,8 @@ public partial class GameWindow : Window
             Console.WriteLine($"Got width {renderedWidth} and height {renderedHeight}");
             
             //Scale back to image pixels
-            double x =point.X * imageWidth / renderedWidth;
-            double y = point.Y * imageHeight / renderedHeight;
+            double x =position.X * imageWidth / renderedWidth;
+            double y = position.Y * imageHeight / renderedHeight;
             var newPoint = new Point(x, y);
 
             //Pass on this new 
